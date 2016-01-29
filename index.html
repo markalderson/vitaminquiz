@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vitamin Quiz</title>
+    <!-- Angular Material CSS -->
+    <link
+      rel="stylesheet"
+      href="node_modules/angular-material/angular-material.css">
+    <!-- mdDataTable CSS -->
+    <link
+      rel="stylesheet"
+      href="bower_components/angular-material-data-table/dist/md-data-table.css">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body
+    ng-app="VitaminQuizApp"
+    ng-controller="QuizCtrl"
+    layout="column"
+    ng-cloak>
+    <md-toolbar>
+      <h1 class="md-toolbar-tools">Vitamin Quiz</h1>
+    </md-toolbar>
+    <md-table-container ng-hide="finished">
+      <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Foods</th>
+            <th md-column ng-repeat="answer in quiz.answers">{{answer}}</th>
+          </tr>
+        </thead>
+        <tbody md-body>
+          <tr md-row md-auto-select ng-repeat="food in quiz.foods">
+            <td md-cell>{{food}}</td>
+            <td md-cell ng-repeat="answer in quiz.answers">
+              <md-radio-group ng-model="food2answer[food]">
+                <md-radio-button
+                  value="{{$index}}"
+                  aria-label="Answer {{$index}} for food {{$parent.$index}}">
+                </md-radio-button>
+              </md-radio-group>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+    <md-button
+      class="md-raised md-primary"
+      ng-click="results()"
+      ng-hide="finished">
+      Get Results
+    </md-button>
+    <md-toolbar ng-show="finished && vitaminsEnough().length > 0">
+      <h2 class="md-toolbar-tools">Vitamins you eat enough</h2>
+    </md-toolbar>
+    <md-list ng-show="finished && vitaminsEnough().length > 0">
+      <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsEnough()">
+        <div class="md-list-item-text">
+          {{vitamin}}
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+    <md-toolbar ng-show="finished && vitaminsNotEnough().length > 0">
+      <h2 class="md-toolbar-tools">Vitamins you don't eat enough</h2>
+    </md-toolbar>
+    <md-list ng-show="finished && vitaminsNotEnough().length > 0">
+      <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsNotEnough()">
+        <div class="md-list-item-text">
+          {{vitamin}}
+        </div>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+    </md-list>
+    <!-- JavaScript -->
+    <!-- Dependencies -->
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-material-data-table/dist/md-data-table.js">
+    </script>
+    <!-- My code -->
+    <script src="script.js"></script>
+  </body>
+</html>

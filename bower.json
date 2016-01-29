@@ -1,0 +1,22 @@
+{
+  "name": "vitamin-quiz",
+  "description": "A simple web app for food- and vitamin-related quizzes.",
+  "main": "",
+  "authors": [
+    "Marco Liceti"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {},
+  "dependencies": {
+    "angular-material-data-table": "^0.9.9"
+  }
+}

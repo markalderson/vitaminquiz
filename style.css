@@ -1,0 +1,12 @@
+[ng-cloak] {
+  display: none;
+}
+
+body > div {
+  height: 100%;
+}
+
+md-list-item.active {
+  background: rgb(240, 240, 240);
+  border-radius: 5px;
+}
