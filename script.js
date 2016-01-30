@@ -1,4 +1,7 @@
 angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
+  config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/data:/);
+  }]).
   controller('QuizCtrl', function ($scope, $location, $http) {
     var quiz_file = $location.search()['quiz'];
     $http.get(quiz_file).then(function (result) {
@@ -28,22 +31,29 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
     };
 
     $scope.vitaminsEnough = function () {
-      if ($scope.finished) {
-        return $scope.quiz.vitamins.filter(function (vitamin, i) {
-          var intake = $scope.vitamin2intake[vitamin];
-          var threshold = $scope.quiz.thresholds[i];
-          return intake >= threshold;
-        });
-      }
+      return $scope.quiz.vitamins.filter(function (vitamin, i) {
+        var intake = $scope.vitamin2intake[vitamin];
+        var threshold = $scope.quiz.thresholds[i];
+        return intake >= threshold;
+      });
     };
 
     $scope.vitaminsNotEnough = function () {
-      if ($scope.finished) {
-        return $scope.quiz.vitamins.filter(function (vitamin, i) {
-          var intake = $scope.vitamin2intake[vitamin];
-          var threshold = $scope.quiz.thresholds[i];
-          return intake < threshold;
-        });
-      }
+      return $scope.quiz.vitamins.filter(function (vitamin, i) {
+        var intake = $scope.vitamin2intake[vitamin];
+        var threshold = $scope.quiz.thresholds[i];
+        return intake < threshold;
+      });
+    };
+
+    $scope.exportAsCsv = function () {
+      var result = $scope.quiz.foods.map(function (food) {
+        var answer_index = $scope.food2answer[food];
+        var answer = $scope.quiz.answers[answer_index];
+        var multiplier = $scope.quiz.multipliers[answer_index];
+        var row = [food, answer, multiplier];
+        return row.join(',');
+      }).join('\n');
+      return encodeURI(result);
     };
   });

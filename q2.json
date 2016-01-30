@@ -1,4 +1,8 @@
 {
+  "title": "Nutrient Quiz",
+  "intro": "How much you eat?",
+  "text_enough": "Nutrients you eat enough",
+  "text_not_enough": "Nutrients you don't eat enough",
   "vitamins": [ "K", "Sodium", "Calcium" ],
   "thresholds": [ 1000, 1200, 500 ],
   "foods": [ "Apple", "Banana" ],

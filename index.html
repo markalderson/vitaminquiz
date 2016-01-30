@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="VitaminQuizApp">
   <head>
     <meta charset="utf-8">
-    <title>Vitamin Quiz</title>
     <!-- Angular Material CSS -->
     <link
       rel="stylesheet"
@@ -15,12 +14,14 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body
-    ng-app="VitaminQuizApp"
     ng-controller="QuizCtrl"
     layout="column"
     ng-cloak>
     <md-toolbar>
-      <h1 class="md-toolbar-tools">Vitamin Quiz</h1>
+      <h1 class="md-toolbar-tools">{{quiz.title}}</h1>
+    </md-toolbar>
+    <md-toolbar ng-if="!finished">
+      <h2 class="md-toolbar-tools">{{quiz.intro}}</h2>
     </md-toolbar>
     <md-table-container ng-hide="finished">
       <table md-table>
@@ -51,10 +52,10 @@
       ng-hide="finished">
       Get Results
     </md-button>
-    <md-toolbar ng-show="finished && vitaminsEnough().length > 0">
-      <h2 class="md-toolbar-tools">Vitamins you eat enough</h2>
+    <md-toolbar ng-if="finished" ng-show="vitaminsEnough().length > 0">
+      <h2 class="md-toolbar-tools">{{quiz.text_enough}}</h2>
     </md-toolbar>
-    <md-list ng-show="finished && vitaminsEnough().length > 0">
+    <md-list ng-if="finished" ng-show="vitaminsEnough().length > 0">
       <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsEnough()">
         <div class="md-list-item-text">
           {{vitamin}}
@@ -62,10 +63,10 @@
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
-    <md-toolbar ng-show="finished && vitaminsNotEnough().length > 0">
-      <h2 class="md-toolbar-tools">Vitamins you don't eat enough</h2>
+    <md-toolbar ng-if="finished" ng-show="vitaminsNotEnough().length > 0">
+      <h2 class="md-toolbar-tools">{{quiz.text_not_enough}}</h2>
     </md-toolbar>
-    <md-list ng-show="finished && vitaminsNotEnough().length > 0">
+    <md-list ng-if="finished" ng-show="vitaminsNotEnough().length > 0">
       <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsNotEnough()">
         <div class="md-list-item-text">
           {{vitamin}}
@@ -73,6 +74,12 @@
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
+    <md-button
+      class="md-raised md-primary"
+      href="data:text/CSV,{{exportAsCsv()}}"
+      ng-if="finished">
+      Export
+    </md-button>
     <!-- JavaScript -->
     <!-- Dependencies -->
     <script src="node_modules/angular/angular.js"></script>

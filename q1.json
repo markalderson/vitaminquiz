@@ -1,4 +1,8 @@
 {
+  "title": "Vitamin Quiz",
+  "intro": "How much you eat?",
+  "text_enough": "Vitamins you eat enough",
+  "text_not_enough": "Vitamins you don't eat enough",
   "vitamins": [ "A", "B", "C", "D" ],
   "thresholds": [ 1000, 1200, 500, 2000 ],
   "foods": [ "Pizza", "Hamburger", "Milkshake" ],
