@@ -1,6 +1,7 @@
 angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
-  controller('QuizCtrl', function ($scope, $http) {
-    $http.get('quiz.json').then(function (result) {
+  controller('QuizCtrl', function ($scope, $location, $http) {
+    var quiz_file = $location.search()['quiz'];
+    $http.get(quiz_file).then(function (result) {
       $scope.quiz = result.data;
       $scope.food2answer = {};
 
