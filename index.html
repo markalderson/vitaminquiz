@@ -58,7 +58,7 @@
     <md-list ng-if="finished" ng-show="vitaminsEnough().length > 0">
       <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsEnough()">
         <div class="md-list-item-text">
-          {{vitamin}}
+          {{vitamin}} [Q.ty: {{intake(vitamin)}} - {{percentage(vitamin)}}%]
         </div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
@@ -69,16 +69,17 @@
     <md-list ng-if="finished" ng-show="vitaminsNotEnough().length > 0">
       <md-list-item class="md-1-line" ng-repeat="vitamin in vitaminsNotEnough()">
         <div class="md-list-item-text">
-          {{vitamin}}
+          {{vitamin}} [Q.ty: {{intake(vitamin)}} - {{percentage(vitamin)}}%]
         </div>
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
     <md-button
+      id="leave_email"
       class="md-raised md-primary"
-      href="data:text/CSV,{{exportAsCsv()}}"
+      ng-click="openResultsDialog($event)"
       ng-if="finished">
-      Export
+      Download Results
     </md-button>
     <!-- JavaScript -->
     <!-- Dependencies -->
