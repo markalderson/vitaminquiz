@@ -1,4 +1,4 @@
-angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
+angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
   config(['$compileProvider', function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/data:|mailto:/);
   }]).
@@ -27,6 +27,7 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
       });
       $scope.vitamin2intake = vitamin2intake;
 
+      $scope.prepareCharts();
       $scope.finished = true;
     };
 
@@ -84,6 +85,42 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table']).
         clickOutsideToClose:true,
         fullscreen: true
       });
+    };
+
+    $scope.prepareCharts = function () {
+      $scope.prepareBarChart();
+      $scope.preparePieCharts();
+    };
+
+    $scope.prepareBarChart = function () {
+      $scope.chart_1_labels = $scope.quiz.vitamins;
+      $scope.chart_1_series = ['Your intake', 'Ideal intake'];
+
+      $scope.chart_1_data = [
+        $scope.quiz.vitamins.map(function (vitamin) {
+          return $scope.vitamin2intake[vitamin]
+        }),
+        $scope.quiz.thresholds
+      ];
+    };
+
+    $scope.preparePieCharts = function () {
+      $scope.pie_chart_data = {};
+      $scope.pie_chart_labels = {};
+      $scope.quiz.vitamins.forEach(function (vitamin) {
+        $scope.preparePieChartFor(vitamin);
+      });
+    };
+
+    $scope.preparePieChartFor = function (vitamin) {
+      $scope.pie_chart_data[vitamin] = $scope.quiz.foods.map(function (food) {
+        var answer_index = $scope.food2answer[food];
+        var multiplier = $scope.quiz.multipliers[answer_index];
+        var i = $scope.quiz.foods.indexOf(food);
+        var j = $scope.quiz.vitamins.indexOf(vitamin);
+        return $scope.quiz.intakes[i][j] * multiplier;
+      });
+      $scope.pie_chart_labels[vitamin] = $scope.quiz.foods;
     };
   }).
   controller('GetResultCtrl', function ($scope, $mdDialog, result) {
