@@ -15,7 +15,10 @@
     "test",
     "tests"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "jspdf": "^1.2.61",
+    "html2canvas": "^0.4.1"
+  },
   "dependencies": {
     "angular-material-data-table": "^0.9.9",
     "angular-chart.js": "^0.10.0",

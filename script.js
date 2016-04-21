@@ -2,7 +2,7 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
   config(['$compileProvider', function ($compileProvider) {
     $compileProvider.aHrefSanitizationWhitelist(/data:|mailto:/);
   }]).
-  controller('QuizCtrl', function ($scope, $location, $http, $mdDialog) {
+  controller('QuizCtrl', function ($scope, $q, $location, $http, $mdDialog) {
     var quiz_file = $location.search()['quiz'];
     $http.get(quiz_file).then(function (result) {
       $scope.quiz = result.data;
@@ -75,16 +75,26 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       return encodeURI(result);
     };
 
+    $scope.exportAsPdf = function () {
+      var pdf = new jsPDF('p','pt','a4');
+      pdf.addHTML(document.body, 0, 0, {}, function() {
+        window.open(pdf.output('datauristring'), '_blank');
+        console.log('yo');
+        setTimeout(function () {
+          location.reload();
+        }, 0);
+      });
+    };
+
     $scope.openResultsDialog = function ($event) {
       $mdDialog.show({
         controller: 'GetResultCtrl',
         templateUrl: 'results_dialog.html',
-        locals: { result: $scope.exportAsCsv() },
         parent: angular.element(document.body),
         targetEvent: $event,
         clickOutsideToClose:true,
         fullscreen: true
-      });
+      }).then($scope.exportAsPdf);
     };
 
     $scope.prepareCharts = function () {
@@ -94,7 +104,7 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
 
     $scope.prepareBarChart = function () {
       $scope.chart_1_labels = $scope.quiz.vitamins;
-      $scope.chart_1_series = ['Your intake', 'Ideal intake'];
+      $scope.chart_1_series = ['You', 'Ideal'];
 
       $scope.chart_1_data = [
         $scope.quiz.vitamins.map(function (vitamin) {
@@ -123,11 +133,13 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       $scope.pie_chart_labels[vitamin] = $scope.quiz.foods;
     };
   }).
-  controller('GetResultCtrl', function ($scope, $mdDialog, result) {
-    $scope.result = result;
-
+  controller('GetResultCtrl', function ($scope, $mdDialog) {
     $scope.dismiss = function () {
       $mdDialog.cancel();
+    };
+
+    $scope.download = function () {
+      $mdDialog.hide();
     };
 
     $scope.emailCheck = function () {

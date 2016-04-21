@@ -11,7 +11,6 @@
       </md-button>
       <md-button
         class="md-primary"
-        target="_blank"
         ng-disabled="emailCheck()"
         ng-click="email_provided = true">
         Confirm
@@ -32,8 +31,7 @@
       </md-button>
       <md-button
         class="md-primary"
-        href="data:text/CSV,{{result}}"
-        ng-click="dismiss()">
+        ng-click="download()">
         Download
       </md-button>
     </div>

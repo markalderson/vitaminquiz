@@ -10,6 +10,10 @@
     <link
       rel="stylesheet"
       href="bower_components/angular-material-data-table/dist/md-data-table.css">
+    <!-- Angular Chart -->
+    <link
+      rel="stylesheet"
+      href="bower_components/angular-chart.js/dist/angular-chart.css">
     <!-- My CSS -->
     <link rel="stylesheet" href="style.css">
   </head>
@@ -87,7 +91,8 @@
           class="chart chart-bar"
           chart-data="chart_1_data"
           chart-labels="chart_1_labels"
-          chart-series="chart_1_series">
+          chart-series="chart_1_series"
+          chart-legend="true">
         </canvas>
       </div>
     </div>
@@ -100,7 +105,8 @@
           ng-attr-id="pie_chart_for_{{vitamin}}"
           class="chart chart-pie"
           chart-data="pie_chart_data[vitamin]"
-          chart-labels="pie_chart_labels[vitamin]">
+          chart-labels="pie_chart_labels[vitamin]"
+          chart-legend="true">
         </canvas>
       </div>
     </div>
@@ -123,6 +129,10 @@
     <script src="bower_components/Chart.js/Chart.js">
     </script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js">
+    </script>
+    <script src="bower_components/jspdf/dist/jspdf.debug.js">
+    </script>
+    <script src="bower_components/html2canvas/build/html2canvas.js">
     </script>
     <!-- My code -->
     <script src="script.js"></script>
