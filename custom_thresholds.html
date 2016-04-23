@@ -1,0 +1,21 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Custom thresholds</h2>
+</md-toolbar>
+<md-content layout-padding>
+  <md-input-container class="md-block" ng-repeat="nutrient in nutrients">
+    <label>Threshold for {{nutrient}}</label>
+    <input ng-model="thresholds[nutrient]">
+  </md-input-container>
+  <div layout="row">
+    <md-button
+      ng-click="dismiss()">
+      Dismiss
+    </md-button>
+    <md-button
+      class="md-primary"
+      ng-disabled="!allDone()"
+      ng-click="confirm()">
+      Confirm
+    </md-button>
+  </div>
+</md-content>

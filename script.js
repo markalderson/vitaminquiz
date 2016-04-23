@@ -28,6 +28,23 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
+    $scope.customThresholds = function ($event) {
+      $mdDialog.show({
+        controller: 'CustomThresholdsCtrl',
+        templateUrl: 'custom_thresholds.html',
+        locals: {
+          nutrients: $scope.quiz.vitamins,
+          thresholds: $scope.quiz.thresholds
+        },
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: true
+      }).then(function (thresholds) {
+        $scope.quiz.thresholds = thresholds;
+      });
+    };
+
     $scope.results = function () {
       var vitamin2intake = {};
       $scope.quiz.foods.forEach(function (food, i) {
@@ -184,5 +201,29 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
         return parseFloat($scope.intakes[nutrient]);
       });
       $mdDialog.hide(result);
+    };
+  }).
+  controller('CustomThresholdsCtrl', function ($scope, $mdDialog, nutrients,
+    thresholds) {
+    $scope.nutrients = nutrients;
+    $scope.thresholds = {};
+    nutrients.forEach(function (nutrient, i) {
+      $scope.thresholds[nutrient] = thresholds[i];
+    });
+
+    $scope.allDone = function () {
+      return $scope.nutrients.filter(function (nutrient) {
+        return $scope.thresholds[nutrient] ? true : false;
+      }).length === $scope.nutrients.length;
+    };
+
+    $scope.dismiss = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.confirm = function () {
+      $mdDialog.hide($scope.nutrients.map(function (nutrient) {
+        return parseFloat($scope.thresholds[nutrient]);
+      }));
     };
   });
