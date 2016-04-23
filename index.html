@@ -24,8 +24,16 @@
     <md-toolbar>
       <h1 class="md-toolbar-tools">{{quiz.title}}</h1>
     </md-toolbar>
-    <md-toolbar ng-if="!finished">
+    <md-toolbar ng-if="!finished" layout="row">
       <h2 class="md-toolbar-tools">{{quiz.intro}}</h2>
+      <span flex></span>
+      <md-button
+        class="md-icon-button"
+        ng-click="addFood($event)"
+        aria-label="Add food">
+        <md-icon md-svg-icon="img/new.svg">
+        </md-icon>
+      </md-button>
     </md-toolbar>
     <md-table-container ng-hide="finished">
       <table md-table>

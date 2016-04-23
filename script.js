@@ -13,6 +13,21 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     });
 
+    $scope.addFood = function ($event) {
+      $mdDialog.show({
+        controller: 'AddFoodCtrl',
+        templateUrl: 'add_food.html',
+        locals: { nutrients: $scope.quiz.vitamins },
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: true
+      }).then(function (result) {
+        $scope.quiz.foods.push(result.name);
+        $scope.quiz.intakes.push(result.intakes);
+      });
+    };
+
     $scope.results = function () {
       var vitamin2intake = {};
       $scope.quiz.foods.forEach(function (food, i) {
@@ -144,5 +159,30 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
 
     $scope.emailCheck = function () {
       return !$scope.email || !$scope.email.includes('@');
+    };
+  }).
+  controller('AddFoodCtrl', function ($scope, $mdDialog, nutrients) {
+    $scope.nutrients = nutrients;
+    $scope.intakes = {};
+
+    $scope.allDone = function () {
+      var name_ok = $scope.name ? true : false;
+      var all_intakes_ok = $scope.nutrients.filter(function (nutrient) {
+        return $scope.intakes[nutrient] ? true : false;
+      }).length === $scope.nutrients.length;
+      return name_ok && all_intakes_ok;
+    };
+
+    $scope.dismiss = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.add = function () {
+      var result = {};
+      result.name = $scope.name;
+      result.intakes = $scope.nutrients.map(function (nutrient) {
+        return parseFloat($scope.intakes[nutrient]);
+      });
+      $mdDialog.hide(result);
     };
   });

@@ -1,0 +1,25 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Add Food</h2>
+</md-toolbar>
+<md-content layout-padding>
+  <md-input-container class="md-block">
+    <label>Food name</label>
+    <input ng-model="name" autofocus>
+  </md-input-container>
+  <md-input-container class="md-block" ng-repeat="nutrient in nutrients">
+    <label>Intake for {{nutrient}}</label>
+    <input ng-model="intakes[nutrient]">
+  </md-input-container>
+  <div layout="row">
+    <md-button
+      ng-click="dismiss()">
+      Dismiss
+    </md-button>
+    <md-button
+      class="md-primary"
+      ng-disabled="!allDone()"
+      ng-click="add()">
+      Confirm
+    </md-button>
+  </div>
+</md-content>

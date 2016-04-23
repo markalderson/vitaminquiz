@@ -14,3 +14,7 @@ md-list-item.active {
 .chart_container {
   display: inline-block;
 }
+
+md-icon svg {
+  fill: white;
+}
