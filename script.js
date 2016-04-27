@@ -6,6 +6,8 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
     var quiz_file = $location.search()['quiz'];
     $http.get(quiz_file).then(function (result) {
       $scope.quiz = result.data;
+      $scope.quiz.available_foods = angular.copy($scope.quiz.foods);
+      $scope.quiz.available_foods_intakes = angular.copy($scope.quiz.intakes);
       $scope.food2answer = {};
 
       $scope.quiz.foods.forEach(function (food) {
@@ -25,6 +27,33 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       }).then(function (result) {
         $scope.quiz.foods.push(result.name);
         $scope.quiz.intakes.push(result.intakes);
+        $scope.quiz.available_foods.push(result.name);
+        $scope.quiz.available_foods_intakes.push(result.intakes);
+      });
+    };
+
+    $scope.selectFoods = function ($event) {
+      $mdDialog.show({
+        controller: 'SelectFoodsCtrl',
+        templateUrl: 'select_foods.html',
+        parent: angular.element(document.body),
+        locals: {
+          foods: $scope.quiz.foods,
+          available_foods: $scope.quiz.available_foods
+        },
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: true
+      }).then(function (selected) {
+        $scope.quiz.foods = $scope.quiz.available_foods.filter(function (food) {
+          return selected[food];
+        });
+        $scope.quiz.intakes = $scope.quiz.available_foods_intakes.filter(
+          function (intakes, i) {
+            var food = $scope.quiz.available_foods[i];
+            return selected[food];
+          }
+        );
       });
     };
 
@@ -225,5 +254,27 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       $mdDialog.hide($scope.nutrients.map(function (nutrient) {
         return parseFloat($scope.thresholds[nutrient]);
       }));
+    };
+  }).
+  controller('SelectFoodsCtrl', function ($scope, $mdDialog, foods,
+    available_foods) {
+    $scope.available_foods = available_foods;
+    $scope.selected = {};
+    $scope.available_foods.forEach(function (food) {
+      $scope.selected[food] = foods.indexOf(food) >= 0;
+    });
+
+    $scope.atLeastOne = function () {
+      return $scope.available_foods.filter(function (food) {
+        return $scope.selected[food];
+      }).length > 0;
+    };
+
+    $scope.dismiss = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.confirm = function () {
+      $mdDialog.hide($scope.selected);
     };
   });
