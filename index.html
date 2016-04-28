@@ -118,6 +118,27 @@
         </canvas>
       </div>
     </div>
+    <div ng-if="finished">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools">Legend</h2>
+      </md-toolbar>
+      <md-table-container>
+        <table md-table>
+          <thead md-head>
+            <tr md-row>
+              <th md-column>Food</th>
+              <th md-column>Label</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row md-auto-select ng-repeat="food in quiz.foods">
+              <td md-cell>{{food}}</td>
+              <td md-cell>F{{$index + 1}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
     <div ng-if="finished" ng-repeat="vitamin in quiz.vitamins">
       <md-toolbar ng-if="finished">
         <h2 class="md-toolbar-tools">Food contributions for {{vitamin}}</h2>

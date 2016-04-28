@@ -117,25 +117,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
-    $scope.exportAsCsv = function () {
-      var result = '';
-      var not_enough = $scope.vitaminsNotEnough();
-      if (not_enough.length > 0) {
-        result += 'Nutrients you don\'t get enough of\n';
-        result += not_enough.join('\n');
-        result += '\n'
-      }
-      result += 'Your answers\n';
-      result += $scope.quiz.foods.map(function (food) {
-        var answer_index = $scope.food2answer[food];
-        var answer = $scope.quiz.answers[answer_index];
-        var multiplier = $scope.quiz.multipliers[answer_index];
-        var row = [food, answer, multiplier];
-        return row.join(',');
-      }).join('\n');
-      return encodeURI(result);
-    };
-
     $scope.exportAsPdf = function () {
       var pdf = new jsPDF('p','pt','a4');
       pdf.addHTML(document.body, 0, 0, {}, function() {
@@ -191,7 +172,9 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
         var j = $scope.quiz.vitamins.indexOf(vitamin);
         return $scope.quiz.intakes[i][j] * multiplier;
       });
-      $scope.pie_chart_labels[vitamin] = $scope.quiz.foods;
+      $scope.pie_chart_labels[vitamin] = $scope.quiz.foods.map(
+        function (food, i) { return 'F' + (i + 1); }
+      );
     };
   }).
   controller('GetResultCtrl', function ($scope, $mdDialog) {
