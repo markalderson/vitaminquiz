@@ -2,6 +2,15 @@
   display: none;
 }
 
+#sticky-header {
+  min-height: 50px;
+  color: rgb(127, 127, 127);
+}
+
+#sticky-header > div {
+  display: inline-block;
+}
+
 body > div {
   height: 100%;
 }

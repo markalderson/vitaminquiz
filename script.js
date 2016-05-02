@@ -15,6 +15,27 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     });
 
+    $scope.$watch('quiz', function () {
+      window.setTimeout(function () {
+        var headers = document.querySelectorAll('#sticky-header > div');
+        var header, column;
+        var i;
+        for (i = 0; i < headers.length; i++) {
+          header = headers[i];
+          column = document.querySelectorAll('tr:first-child td')[i];
+          header.style.width = (column.offsetWidth - 15) + 'px';
+          header.style.padding = 5 + 'px';
+        }
+      }, 100);
+      /*
+      headers.forEach(function (header, i) {
+        console.log(header);
+        console.log(i);
+        console.log('\n\n\n\n\n');
+      });
+      */
+    }, true);
+
     $scope.addFood = function ($event) {
       $mdDialog.show({
         controller: 'AddFoodCtrl',

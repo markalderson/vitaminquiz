@@ -5,8 +5,17 @@
   "text_not_enough": "Vitamins you don't eat enough",
   "vitamins": [ "A", "B", "C", "D" ],
   "thresholds": [ 1000, 1200, 500, 2000 ],
-  "foods": [ "Pizza", "Hamburger", "Milkshake" ],
+  "foods": [ "Pizza", "Hamburger", "Milkshake", "Pizza2", "Hamburger2", "Milkshake2", "Pizza3", "Hamburger3", "Milkshake3", "Pizza4", "Hamburger4", "Milkshake4" ],
   "intakes": [
+    [ 100, 200, 100, 200 ],
+    [ 0, 0, 100, 300 ],
+    [ 0, 0, 100, 300 ],
+    [ 100, 200, 100, 200 ],
+    [ 0, 0, 100, 300 ],
+    [ 0, 0, 100, 300 ],
+    [ 100, 200, 100, 200 ],
+    [ 0, 0, 100, 300 ],
+    [ 0, 0, 100, 300 ],
     [ 100, 200, 100, 200 ],
     [ 0, 0, 100, 300 ],
     [ 0, 0, 100, 300 ]
