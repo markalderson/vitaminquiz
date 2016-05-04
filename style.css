@@ -5,6 +5,7 @@
 #sticky-header {
   min-height: 50px;
   color: rgb(127, 127, 127);
+  font-weight: bold;
 }
 
 #sticky-header > div {
