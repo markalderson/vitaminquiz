@@ -1,0 +1,30 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Select Categories</h2>
+</md-toolbar>
+<md-content layout-padding>
+  <md-list>
+    <md-list-item
+      class="md-1-line"
+      ng-repeat="category in available_categories">
+      <div class="md-list-item-text">
+        <md-checkbox
+          ng-model="selected[category]"
+          aria-label="Toggle {{category}} selection">
+          {{category}}
+        </md-checkbox>
+      </div>
+    </md-list-item>
+  </md-list>
+  <div layout="row">
+    <md-button
+      ng-click="dismiss()">
+      Dismiss
+    </md-button>
+    <md-button
+      class="md-primary"
+      ng-disabled="!atLeastOne()"
+      ng-click="confirm()">
+      Confirm
+    </md-button>
+  </div>
+</md-content>

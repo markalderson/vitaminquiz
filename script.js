@@ -8,6 +8,10 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       $scope.quiz = result.data;
       $scope.quiz.available_foods = angular.copy($scope.quiz.foods);
       $scope.quiz.available_foods_intakes = angular.copy($scope.quiz.intakes);
+      $scope.quiz.available_categories =
+        Object.keys($scope.quiz.categories);
+      $scope.quiz.selected_categories =
+        Object.keys($scope.quiz.categories);
       $scope.food2answer = {};
 
       $scope.quiz.foods.forEach(function (food) {
@@ -27,13 +31,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
           header.style.padding = 5 + 'px';
         }
       }, 100);
-      /*
-      headers.forEach(function (header, i) {
-        console.log(header);
-        console.log(i);
-        console.log('\n\n\n\n\n');
-      });
-      */
     }, true);
 
     $scope.addFood = function ($event) {
@@ -95,23 +92,50 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
-    $scope.results = function () {
-      var vitamin2intake = {};
-      $scope.quiz.foods.forEach(function (food, i) {
-        var answer_index = $scope.food2answer[food];
-        var multiplier = $scope.quiz.multipliers[answer_index];
-        $scope.quiz.vitamins.forEach(function (vitamin, j) {
-          var intake = vitamin2intake[vitamin];
-          if (!intake) intake = 0;
-          intake += $scope.quiz.intakes[i][j] * multiplier;
-          vitamin2intake[vitamin] = intake;
+    $scope.selectCategories = function ($event) {
+      $mdDialog.show({
+        controller: 'SelectCategoriesCtrl',
+        templateUrl: 'select_categories.html',
+        locals: {
+          categories: $scope.quiz.categories,
+          available_categories: $scope.quiz.available_categories,
+          selected_categories: $scope.quiz.selected_categories
+        },
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: true
+      }).then(function (selected) {
+        $scope.quiz.selected_categories = $scope.quiz.available_categories.
+          filter(function (category) {
+          return selected[category];
         });
       });
-      $scope.vitamin2intake = vitamin2intake;
-
-      $scope.prepareCharts();
-      $scope.finished = true;
     };
+
+    $scope.$watch('quiz.selected_categories', function (categories) {
+      if (categories) {
+        var foods = categories.map(function (category) {
+          var foods = $scope.quiz.categories[category];
+          return foods;
+        }).reduce(function (a, b) { return a.concat(b) }, []);
+
+        var indices = $scope.quiz.available_foods.map(function (food, i) {
+          return foods.indexOf(food) >= 0 ? i : 'ignore';
+        }).filter(function (x) { return x !== 'ignore' });
+
+        $scope.quiz.foods = $scope.quiz.available_foods.filter(
+          function (food, i) {
+            return indices.indexOf(i) >= 0;
+          }
+        );
+        $scope.quiz.intakes = $scope.quiz.available_foods_intakes.filter(
+          function (intake, i) {
+            return indices.indexOf(i) >= 0;
+          }
+        );
+      }
+    });
 
     $scope.intake = function (vitamin) {
       return $scope.vitamin2intake[vitamin];
@@ -142,7 +166,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       var pdf = new jsPDF('p','pt','a4');
       pdf.addHTML(document.body, 0, 0, {}, function() {
         window.open(pdf.output('datauristring'), '_blank');
-        console.log('yo');
         setTimeout(function () {
           location.reload();
         }, 0);
@@ -271,6 +294,30 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
     $scope.atLeastOne = function () {
       return $scope.available_foods.filter(function (food) {
         return $scope.selected[food];
+      }).length > 0;
+    };
+
+    $scope.dismiss = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.confirm = function () {
+      $mdDialog.hide($scope.selected);
+    };
+  }).
+  controller('SelectCategoriesCtrl', function ($scope, $mdDialog, categories,
+  available_categories, selected_categories) {
+    $scope.categories = categories;
+    $scope.available_categories = available_categories;
+
+    $scope.selected = {};
+    $scope.available_categories.forEach(function (category) {
+      $scope.selected[category] = selected_categories.indexOf(category) >= 0;
+    });
+
+    $scope.atLeastOne = function () {
+      return $scope.available_categories.filter(function (category) {
+        return $scope.selected[category];
       }).length > 0;
     };
 
