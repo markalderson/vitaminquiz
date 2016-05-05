@@ -92,6 +92,12 @@
       ng-hide="finished">
       Get Results
     </md-button>
+    <md-toolbar ng-if="finished && exporting">
+      <h2 class="md-toolbar-tools">Notes</h2>
+    </md-toolbar>
+    <div layout-padding ng-if="finished && exporting">
+      <p>{{quiz.export_notes}}</p>
+    </div>
     <md-toolbar ng-if="finished" ng-show="vitaminsEnough().length > 0">
       <h2 class="md-toolbar-tools">{{quiz.text_enough}}</h2>
     </md-toolbar>

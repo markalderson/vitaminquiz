@@ -8,6 +8,7 @@
   "foods": [
     "Pizza", "Hamburger", "Milkshake"
   ],
+  "export_notes": "Thanks for using my quiz!",
   "custom_thresold_multipliers": {
     "A": {
       "a": 2,

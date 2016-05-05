@@ -233,7 +233,10 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
         targetEvent: $event,
         clickOutsideToClose:true,
         fullscreen: true
-      }).then($scope.exportAsPdf);
+      }).then(function () {
+        $scope.exporting = true;
+        $scope.exportAsPdf();
+      });
     };
 
     $scope.prepareCharts = function () {
