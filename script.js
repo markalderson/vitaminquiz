@@ -113,6 +113,24 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
+    $scope.results = function () {
+      var vitamin2intake = {};
+      $scope.quiz.foods.forEach(function (food, i) {
+        var answer_index = $scope.food2answer[food];
+        var multiplier = $scope.quiz.multipliers[answer_index];
+        $scope.quiz.vitamins.forEach(function (vitamin, j) {
+          var intake = vitamin2intake[vitamin];
+          if (!intake) intake = 0;
+          intake += $scope.quiz.intakes[i][j] * multiplier;
+          vitamin2intake[vitamin] = intake;
+        });
+      });
+      $scope.vitamin2intake = vitamin2intake;
+
+      $scope.prepareCharts();
+      $scope.finished = true;
+    };
+
     $scope.$watch('quiz.selected_categories', function (categories) {
       if (categories) {
         var foods = categories.map(function (category) {
