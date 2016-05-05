@@ -19,6 +19,12 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     });
 
+    $scope.user = {
+      age: 3,
+      gender: 1.5,
+      goal: 1
+    };
+
     $scope.$watch('quiz', function () {
       window.setTimeout(function () {
         var headers = document.querySelectorAll('#sticky-header > div');
@@ -113,8 +119,37 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
+    $scope.userProfile = function ($event) {
+      $mdDialog.show({
+        controller: 'UserProfileCtrl',
+        templateUrl: 'user_profile.html',
+        parent: angular.element(document.body),
+        locals: { user: $scope.user },
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: true
+      }).then(function (user) {
+        $scope.user = user;
+      });
+    };
+
+    $scope.adjustThresholds = function () {
+      $scope.quiz.thresholds = $scope.quiz.vitamins.map(function (vitamin, i) {
+        var threshold = $scope.quiz.thresholds[i];
+        var a = $scope.quiz.custom_thresold_multipliers[vitamin]['a'];
+        var x = $scope.user.age;
+        var b = $scope.quiz.custom_thresold_multipliers[vitamin]['b'];
+        var y = $scope.user.gender;
+        var c = $scope.quiz.custom_thresold_multipliers[vitamin]['c'];
+        var z = $scope.user.goal;
+        var m = a * x + b * y + c * z;
+        return (1 + m) * threshold;
+      });
+    };
+
     $scope.results = function () {
       var vitamin2intake = {};
+      $scope.adjustThresholds();
       $scope.quiz.foods.forEach(function (food, i) {
         var answer_index = $scope.food2answer[food];
         var multiplier = $scope.quiz.multipliers[answer_index];
@@ -345,5 +380,19 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
 
     $scope.confirm = function () {
       $mdDialog.hide($scope.selected);
+    };
+  }).
+  controller('UserProfileCtrl', function ($scope, $mdDialog, user) {
+    $scope.user = user;
+
+    $scope.dismiss = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.confirm = function () {
+      $scope.user.age = parseFloat($scope.user.age);
+      $scope.user.gender = parseFloat($scope.user.gender);
+      $scope.user.goal = parseFloat($scope.user.goal);
+      $mdDialog.hide($scope.user);
     };
   });

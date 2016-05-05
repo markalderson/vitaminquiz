@@ -1,0 +1,44 @@
+<md-toolbar>
+  <h2 class="md-toolbar-tools">User Profile</h2>
+</md-toolbar>
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Age</h2>
+</md-toolbar>
+<div layout-padding>
+  <md-radio-group ng-model="user.age">
+    <md-radio-button value="3">18-30</md-radio-button>
+    <md-radio-button value="2">30-45</md-radio-button>
+    <md-radio-button value="1">45 or more</md-radio-button>
+  </md-radio-group>
+</div>
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Gender</h2>
+</md-toolbar>
+<div layout-padding>
+  <md-radio-group ng-model="user.gender">
+    <md-radio-button value="1.5">Male</md-radio-button>
+    <md-radio-button value="1">Female</md-radio-button>
+  </md-radio-group>
+</div>
+<md-toolbar>
+  <h2 class="md-toolbar-tools">Goal</h2>
+</md-toolbar>
+<div layout-padding>
+  <md-radio-group ng-model="user.goal">
+    <md-radio-button value="1">Fat loss</md-radio-button>
+    <md-radio-button value="1.5">Building muscles</md-radio-button>
+  </md-radio-group>
+</div>
+<div layout-padding>
+  <div layout="row">
+    <md-button
+      ng-click="dismiss()">
+      Dismiss
+    </md-button>
+    <md-button
+      class="md-primary"
+      ng-click="confirm()">
+      Confirm
+    </md-button>
+  </div>
+</div>
