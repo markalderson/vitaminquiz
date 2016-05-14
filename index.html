@@ -29,6 +29,7 @@
       <span flex></span>
       <md-button
         class="md-icon-button"
+        ng-if="!quiz.disable_add_food"
         ng-click="addFood($event)"
         aria-label="Add food">
         <md-icon md-svg-icon="img/new.svg">
@@ -36,6 +37,7 @@
       </md-button>
       <md-button
         class="md-icon-button"
+        ng-if="!quiz.disable_custom_thresholds"
         ng-click="customThresholds($event)"
         aria-label="Custom thresholds">
         <md-icon md-svg-icon="img/equalizer.svg">
@@ -43,6 +45,7 @@
       </md-button>
       <md-button
         class="md-icon-button"
+        ng-if="!quiz.disable_select_foods"
         ng-click="selectFoods($event)"
         aria-label="Select Foods">
         <md-icon md-svg-icon="img/list.svg">
@@ -50,6 +53,7 @@
       </md-button>
       <md-button
         class="md-icon-button"
+        ng-if="!quiz.disable_select_categories"
         ng-click="selectCategories($event)"
         aria-label="Select Categories">
         <md-icon md-svg-icon="img/groups.svg">
@@ -57,6 +61,7 @@
       </md-button>
       <md-button
         class="md-icon-button"
+        ng-if="!quiz.disable_user_profile"
         ng-click="userProfile($event)"
         aria-label="User Profile">
         <md-icon md-svg-icon="img/people.svg">

@@ -43,5 +43,10 @@
     [ 0, 0, 100, 300 ]
   ],
   "answers": [ "Never", "Twice a week", "Three times a week", "Everyday" ],
-  "multipliers": [ 0, 8, 12, 30 ]
+  "multipliers": [ 0, 8, 12, 30 ],
+  "disable_add_food": false,
+  "disable_custom_thresholds": true,
+  "disable_select_foods": false,
+  "disable_select_categories": true,
+  "disable_user_profile": false
 }
