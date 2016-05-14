@@ -289,6 +289,9 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
   controller('AddFoodCtrl', function ($scope, $mdDialog, nutrients) {
     $scope.nutrients = nutrients;
     $scope.intakes = {};
+    $scope.nutrients.forEach(function (nutrient) {
+      $scope.intakes[nutrient] = 0;
+    });
 
     $scope.allDone = function () {
       var name_ok = $scope.name ? true : false;
