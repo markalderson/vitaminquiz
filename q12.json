@@ -1,0 +1,175 @@
+{
+  "title": "The following quiz will tell you if you are getting the average adult recommended daily intake based on your diet",
+  "intro": "To begin click the number of times you eat each food item in ONE WEEK, then click 'Get Results' below",
+  "text_enough": "You're probably getting enough of these:",
+  "text_not_enough": "You're probably not getting enough of these:",
+  "vitamins": [ "Vitamin K", "Choline", "Calcium", "Iron", "Magnesium", "Phosphorus", "Vitamin D", "Vitamin E", "Zinc", "Copper", "Manganese", "Vitamin C", "Vitamin B1 (Thiamine, Thiamin) ", "Vitamin B2   (Riboflavin)", "Niacin", "Pantothenic Acid", "Vitamin B6", "Folate", "Vitamin B12", "Vitamin Ae (Retinol)" ],
+  "thresholds": [ 105, 487.5, 1100, 10.5, 366.25, 700, 650, 15, 9.5, 900, 2.05, 82.5, 1.15, 1.2, 15, 5, 1.45, 400, 2.4, 800 ],
+  "foods": [
+    "1 cup of whole milk", "Yoghurt (4-6oz)", "Cabbage or coleslaw (1/2 cup)","Carrots, raw (1/2 carrot or 2-4 sticks)", "Corn (1 ear or 1/2 cup frozen or canned)",  "Yams or sweet potatoes (1/2 cup)", "Kale, mustard greens or chard (1/2 cup)", "Spinach (1 cup)", "Lettuce (1 serving)", "Celery (2-3 sticks)", "Peppers: green, yellow or red (2 rings or 1/4 small)", "Onions as a cooked vegetable, rings or soup (1/2 cup)", "Eggs (1)", "Chicken or turkey (3 oz) including ground", "Processed meats eg sausages, kielbasa etc. (2 oz or small links)", "Pork as a main dish eg ham or chops (4-6 oz)", "Beef or lamb as a main dish e.g. Steak, roast (4-6 oz)", "Shrimp, lobster, scallops as a mian dish", "Dark meat fish, eg tuna steak, mackerel, salmon, sardines, bluefish, swordfish (3-5 oz)", "Other fish, eg cod, haddock, halibut (3-4 oz)", "Cold breakfast cereal (1 serving)", "Cooked oatmeal/cooked oat bran (including instant) (1 cup)", "Other cooked breakfast cereal (1 cup)", "Bread (1 slice) White bread including pita", "Bread (1 slice) Rye, pumpernickel, whole wheat, oatmeat, or wholegrain", "Brown rice (1 cup)", "White rice (1 cup)", "Pasta", "Potatoes, baked, boiled (1) or mashed (1 cup)", "peanuts (small packet or 1 oz)", "Walnuts (1 oz)", "Other nuts (small packet or 1 oz)", "oat bran, other bran (wheat etc.) added to food (1 tbs)", "Flaxseed (1 tbs)", "Garlic, fresh or powdered (1 clove or 4 shakes)", "Olive oil added to food or bread (1 tbs)", "Bananans (1)", "Cantaloupe (1/4 melon)", "Avacado (1/2 fruit or 1/2 cup)", "Fresh apples or pears (1)", "Oranges (1)", "Grapefruit (1/2) or grapefruit juice (small glass)", "Strawberries, fresh, frozen or canned (1/2 cup)", "Peaches or plums (1 fresh or 1/2 cup canned)", "Apricots (1 fresh, 1/2 cup canned or 5 dried)", "Tomatoes (2 slices)", "String beans (1/2 cup)", "beans or lentils, baked, dried or soup (1/2 cup)", "Tofu, soy burger, soybeans, miso or other soy protein", "Peas, pea soup or lima beans (1/2 cup, fresh, frz, canned)", "Broccoli (1/2 cup)"
+  ],
+  "export_notes": "Thanks for using my quiz!", 
+  "custom_thresold_multipliers": {
+   "Vitamin K": {
+      "a": 2,
+      "b": 3,
+      "c": 4
+    },
+    "Choline": {
+      "a": 2,
+      "b": 1.5,
+      "c": 1.5
+    },
+    "Calcium": {
+      "a": 2,
+      "b": 3,
+      "c": 1
+    },
+    "Iron": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Magnesium": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Phosphorus": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin D": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin E": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Zinc": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Copper": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Manganese": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin C": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin B1 (Thiamine, Thiamin) ": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin B2   (Riboflavin)": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Niacin": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Pantothenic Acid": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin B6": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Folate": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin B12": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    },
+    "Vitamin Ae (Retinol)": {
+      "a": 4,
+      "b": 3,
+      "c": 1
+    }
+  },
+  "categories": {
+    "With meat": [ "1 cup of whole milk", "Yoghurt (4-6oz)", "Cabbage or coleslaw (1/2 cup)","Carrots, raw (1/2 carrot or 2-4 sticks)", "Corn (1 ear or 1/2 cup frozen or canned)",  "Yams or sweet potatoes (1/2 cup)", "Kale, mustard greens or chard (1/2 cup)", "Spinach (1 cup)", "Lettuce (1 serving)", "Celery (2-3 sticks)", "Peppers: green, yellow or red (2 rings or 1/4 small)", "Onions as a cooked vegetable, rings or soup (1/2 cup)", "Eggs (1)", "Chicken or turkey (3 oz) including ground", "Processed meats eg sausages, kielbasa etc. (2 oz or small links)", "Pork as a main dish eg ham or chops (4-6 oz)", "Beef or lamb as a main dish e.g. Steak, roast (4-6 oz)", "Shrimp, lobster, scallops as a mian dish", "Dark meat fish, eg tuna steak, mackerel, salmon, sardines, bluefish, swordfish (3-5 oz)", "Other fish, eg cod, haddock, halibut (3-4 oz)", "Cold breakfast cereal (1 serving)", "Cooked oatmeal/cooked oat bran (including instant) (1 cup)", "Other cooked breakfast cereal (1 cup)", "Bread (1 slice) White bread including pita", "Bread (1 slice) Rye, pumpernickel, whole wheat, oatmeat, or wholegrain", "Brown rice (1 cup)", "White rice (1 cup)", "Pasta", "Potatoes, baked, boiled (1) or mashed (1 cup)", "peanuts (small packet or 1 oz)", "Walnuts (1 oz)", "Other nuts (small packet or 1 oz)", "oat bran, other bran (wheat etc.) added to food (1 tbs)", "Flaxseed (1 tbs)", "Garlic, fresh or powdered (1 clove or 4 shakes)", "Olive oil added to food or bread (1 tbs)", "Bananans (1)", "Cantaloupe (1/4 melon)", "Avacado (1/2 fruit or 1/2 cup)", "Fresh apples or pears (1)", "Oranges (1)", "Grapefruit (1/2) or grapefruit juice (small glass)", "Strawberries, fresh, frozen or canned (1/2 cup)", "Peaches or plums (1 fresh or 1/2 cup canned)", "Apricots (1 fresh, 1/2 cup canned or 5 dried)", "Tomatoes (2 slices)", "String beans (1/2 cup)", "beans or lentils, baked, dried or soup (1/2 cup)", "Tofu, soy burger, soybeans, miso or other soy protein" ],
+    "Other": [
+      "Peas, pea soup or lima beans (1/2 cup, fresh, frz, canned)", "Broccoli (1/2 cup)"
+    ]
+  },
+  "intakes": [
+    [ 0.3, 14.2, 113, 0.03, 10, 91, 51, 0, 0.4, 0.01, 0, 0, 0.04, 0.18, 0.1, 0.36, 0.04, 5, 0.44, 28 ],
+[ 2.55, 34.2, 207, 1.485, 43.8, 184.35, 6, 0, 0.99, 0.255, 0.285, 0, 0.135, 0.315, 0.75, 0.615, 0.09, 16.5, 0.72, 36.45 ],
+[ 0.7, 9.7, 5, 0.26, 27, 22, 0, 0, 0.15, 0.08, 0.27, 8.7, 0.03, 0.07, 0.7, 0.33, 0.37, 20, 0, 3 ],
+[ 4.375, 13.125, 15.75, 0.3675, 21, 26.25, 0, 0, 0.315, 0.07, 0.07, 64.225, 0.07, 0.035, 1.225, 0.175, 0.1225, 36.75, 0, 295.75 ],
+[ 0, 3.6, 16, 0.24, 10, 14, 0, 0, 0.04, 0.02, 0.14, 1.8, 0.04, 0.04, 0.2, 0.1, 0.04, 0, 0, 0 ],
+[ 0, 15.2, 24, 0.18, 16, 16, 0, 0, 0.14, 0.1, 0.02, 68.8, 0.08, 0.04, 0.4, 0.56, 0.08, 20, 0, 92 ],
+[ 4.55, 10.675, 10.5, 0.4375, 15.75, 35, 0, 0, 0.2975, 0.1225, 0.105, 11.55, 0.035, 0.0525, 1.4, 0.2625, 0.0525, 7, 0, 28 ],
+[ 2.7, 6.7, 10, 0.27, 11, 24, 0, 0, 0.17, 0.06, 0.11, 12.7, 0.04, 0.02, 0.6, 0.09, 0.08, 15, 0, 42 ],
+[ 27.8, 27.4, 44, 1.44, 42, 72, 0, 0, 1.08, 0.38, 0.32, 4, 0.04, 0.12, 7.8, 0.16, 0.34, 26, 0, 76 ],
+[ 27.8, 27.4, 44, 1.44, 42, 72, 0, 0, 1.08, 0.38, 0.32, 4, 0.04, 0.12, 7.8, 0.16, 0.34, 26, 0, 76 ],
+[ 15.875, 16.875, 52.5, 0.825, 23.75, 36.25, 0, 0, 0.3, 0.075, 0.3625, 5.125, 0.05, 0.1125, 0.5, 0.0625, 0.075, 28.75, 0, 35 ],
+[ 1.7, 27.7, 19, 3.33, 36, 180, 0, 0, 1.27, 0.25, 0.49, 1.5, 0.17, 0.07, 1.1, 0.64, 0.18, 181, 0, 0 ],
+[ 2, 27.3, 111, 1.11, 27, 92, 0, 0, 0.64, 0.16, 0.39, 0.2, 0.05, 0.04, 0.5, 0.05, 0.05, 44, 0, 0 ],
+[ 13.8, 39.1, 16, 0.32, 9, 32, 0, 0, 0.17, 0.02, 0.13, 44.3, 0.04, 0.05, 0.4, 0.51, 0.17, 44, 0, 1 ],
+[ 15.5, 8.3, 24, 0.46, 14, 42, 0, 0, 0.18, 0.05, 0.13, 8.5, 0.09, 0.05, 0.4, 0.23, 0.22, 4, 0, 956 ],
+[ 0.3, 21.9, 3, 0.47, 28, 79, 0, 0, 0.63, 0.05, 0.16, 3.5, 0.03, 0.06, 1.3, 0.15, 0.1, 35, 0, 10 ],
+[ 35.25, 31.05, 37.5, 1.23, 33, 76.5, 0, 0, 0.735, 0.12, 0.57, 4.8, 0.105, 0.18, 1.35, 0.225, 0.105, 28.5, 0, 321 ],
+[ 2.9, 12.5, 6, 0.25, 11, 15, 0, 0, 0.12, 0.06, 0.11, 1.3, 0.08, 0.02, 0.6, 0.08, 0.09, 14, 0, 2 ],
+[ 817, 0.4, 72, 0.9, 18, 28, 0, 0, 0.24, 0.16, 0.42, 41, 0.05, 0.07, 0.5, 0.05, 0.14, 13, 0, 681 ],
+[ 811.5, 37.2, 204, 5.355, 130.5, 84, 0, 0, 1.14, 0.255, 1.41, 14.7, 0.135, 0.36, 0.75, 0.21, 0.36, 219, 0, 786 ],
+[ 553.5, 33, 148.5, 4.065, 118.5, 73.5, 0, 0, 0.795, 0.195, 1.35, 42.15, 0.12, 0.285, 1.05, 0.09, 0.285, 291, 0, 703.5 ],
+[ 24.1, 6.7, 18, 0.41, 7, 20, 0, 0, 0.15, 0.03, 0.12, 2.8, 0.04, 0.03, 0.1, 0.09, 0.04, 29, 0, 25 ],
+[ 102.5, 9.9, 33, 0.97, 14, 30, 0, 0, 0.23, 0.05, 0.16, 24, 0.07, 0.07, 0.3, 0.14, 0.07, 136, 0, 436 ],
+[ 29.3, 6.2, 40, 0.2, 11, 24, 0, 0, 0.13, 0.04, 0.1, 3.1, 0.02, 0.06, 0.3, 0.25, 0.07, 36, 0, 22 ],
+[ 7.4, 5.5, 10, 0.34, 10, 20, 0, 0, 0.13, 0.07, 0.12, 80.4, 0.06, 0.03, 0.5, 0.1, 0.22, 10, 0, 18 ],
+[ 0.2, 3.1, 11.5, 0.105, 5, 14.5, 0, 0, 0.085, 0.02, 0.065, 3.7, 0.025, 0.015, 0.05, 0.06, 0.06, 9.5, 0, 0 ],
+[ 0.15, 125.5, 26.5, 0.915, 6, 95.5, 41, 0, 0.555, 0.05, 0.02, 0, 0.035, 0.24, 0.05, 0.72, 0.07, 23.5, 0.645, 70 ],
+[ 0, 14.5, 7.5, 0.46, 10.5, 81, 0.1, 0, 0.595, 0.11, 0.005, 0, 0.01, 0.035, 1.1, 0.185, 0.095, 1.5, 0.095, 0 ],
+[ 2.4, 79.5, 15, 1.21, 25, 195, 5, 0, 2.1, 0.07, 0.02, 0, 0.07, 0.18, 9.2, 1.1, 0.47, 6, 0.33, 16 ],
+[ 18.4, 36.1, 26, 1.01, 28, 182, 14, 0, 0.48, 0.06, 0.21, 0, 0.15, 0.12, 1.6, 0.42, 0.05, 9, 1.3, 31 ],
+[ 0, 75.8, 39, 3.09, 34, 137, 4, 0, 1.56, 0.19, 0.03, 2.2, 0.03, 0.03, 2.6, 0.34, 0.13, 4, 1.49, 68 ],
+[ 0.125, 53.375, 26.25, 1.175, 80, 306.25, 102.5, 0, 0.8375, 0.1, 0.025, 1.25, 0.625, 0.075, 14.875, 1.0875, 1.3, 2.5, 0.75, 25 ],
+[ 0, 83.7, 60, 1.07, 107, 285, 231, 0, 0.53, 0.04, 0.02, 0, 0.07, 0.09, 7.1, 0.38, 0.4, 14, 1.37, 54 ],
+[ 2.25, 9.6, 12, 0.84, 33, 96, 0, 0, 0.915, 0.135, 0.72, 0, 0.075, 0.03, 1.05, 0.135, 0.06, 1.5, 0, 0 ],
+[ 0.9, 6.9, 12, 1.125, 15, 52.5, 0, 0, 0.345, 0.06, 0.765, 0.6, 0.045, 0.015, 0.6, 0.21, 0.03, 15, 0, 0.45 ],
+[ 5.7, 22.05, 226.5, 5.61, 34.5, 148.5, 0, 0, 1.11, 0.375, 0.72, 0, 0.69, 0.495, 6.6, 0.3, 0.12, 37.5, 0, 0 ],
+[ 0, 4, 20, 2.4, 24, 86, 0, 0, 0.98, 0.14, 0.94, 0, 0.32, 0.02, 3, 0.78, 0.18, 6, 0, 0 ],
+[ 0, 12.8, 14, 2.56, 36, 116, 0, 0, 1.02, 0.2, 0.64, 0, 0.54, 0.28, 3.4, 0.22, 0.1, 14, 0, 0 ],
+[ 0, 13.2, 81, 1.23, 72, 314, 0, 0, 1.31, 0.15, 0.33, 0, 0.09, 0.06, 1.5, 0.11, 0.22, 5, 0, 0 ],
+[ 3, 24.15, 22.5, 1.62, 42, 105, 0, 0, 0.54, 0.18, 0.33, 14.4, 0.09, 0.075, 2.1, 0.57, 0.465, 42, 0, 1.5 ],
+[ 0, 1, 0, 0.05, 7.5, 2.5, 0, 0, 0.05, 0.025, 0.55, 0, 0, 0.025, 0, 0.025, 0, 12.5, 0, 0 ],
+[ 1, 57.5, 364.5, 0, 176, 317.5, 159, 0, 1.5, 0.1, 0.1, 0, 0.1, 0.95, 9.5, 1.2, 0.1, 15, 1.2, 182.5 ],
+[ 0.2, 32.8, 21.5, 0.935, 77, 179, 0, 0, 1.455, 0.235, 0.735, 0, 0.035, 0.05, 6.7, 0.53, 0.27, 37, 0, 0 ],
+[ 2.05, 7.65, 2, 0.99, 39.5, 99.5, 0, 0, 1.55, 0.08, 0.315, 0.15, 0.065, 0.03, 0.6, 0.115, 0.055, 12.5, 0, 4 ],
+[ 0, 28, 30.5, 0.76, 88, 198.5, 0, 0, 1.64, 0.265, 0.925, 0.4, 0.045, 0.045, 6.9, 0.6, 0.23, 60, 0, 0 ],
+[ 1.2, 19.6, 49, 1.455, 79, 173, 0, 0, 1.545, 0.795, 1.705, 0.65, 0.17, 0.075, 0.55, 0.285, 0.27, 49, 0, 0.5 ],
+[ 2.15, 39.35, 127.5, 2.865, 196, 321, 0, 0, 2.17, 0.61, 1.24, 0.3, 0.82, 0.08, 1.55, 0.495, 0.235, 43.5, 0, 0 ],
+[ 0, 33.75, 40, 1.375, 29, 208.5, 0, 0, 1.315, 0.075, 0.275, 9, 0.235, 0.075, 0.35, 0, 1.47, 1, 0, 0 ],
+[ 15, 1.35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[ 15, 1.35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[ 21.1, 10.7, 3.5, 0.11, 0.5, 12.5, 3.5, 0, 0.085, 0.015, 0.005, 0, 0.015, 0.03, 0, 0.095, 0.29, 2.5, 0.165, 40.5 ]
+  ],
+  "answers": [ "Less than once per week", "1-3 per week", "1 per day", "2-4 per day", "5-6 per day" ],
+  "multipliers": [ 0, 0.214285714285714, 1, 3, 5.5 ]
+}

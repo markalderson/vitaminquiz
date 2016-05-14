@@ -21,10 +21,6 @@ md-list-item.active {
   border-radius: 5px;
 }
 
-.chart_container {
-  display: inline-block;
-}
-
 md-icon svg {
   fill: white;
 }

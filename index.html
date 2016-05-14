@@ -125,58 +125,25 @@
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
-    <md-toolbar ng-if="finished">
-      <h2 class="md-toolbar-tools">Charts</h2>
-    </md-toolbar>
-    <md-toolbar ng-if="finished">
-      <h2 class="md-toolbar-tools">Intakes for each nutrient</h2>
-    </md-toolbar>
     <div ng-if="finished" layout-padding>
-      <div class="chart_container">
-        <canvas
-          id="chart_1"
-          class="chart chart-bar"
-          chart-data="chart_1_data"
-          chart-labels="chart_1_labels"
-          chart-series="chart_1_series"
-          chart-legend="true">
-        </canvas>
-      </div>
-    </div>
-    <div ng-if="finished">
-      <md-toolbar>
-        <h2 class="md-toolbar-tools">Legend</h2>
-      </md-toolbar>
-      <md-table-container>
-        <table md-table>
-          <thead md-head>
-            <tr md-row>
-              <th md-column>Food</th>
-              <th md-column>Label</th>
-            </tr>
-          </thead>
-          <tbody md-body>
-            <tr md-row md-auto-select ng-repeat="food in quiz.foods">
-              <td md-cell>{{food}}</td>
-              <td md-cell>F{{$index + 1}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </md-table-container>
+      <canvas
+        id="chart_1"
+        class="chart chart-bar"
+        chart-data="chart_1_data"
+        chart-labels="chart_1_labels"
+        chart-series="chart_1_series"
+        chart-legend="true">
+      </canvas>
     </div>
     <div ng-if="finished" ng-repeat="vitamin in quiz.vitamins">
-      <md-toolbar ng-if="finished">
-        <h2 class="md-toolbar-tools">Food contributions for {{vitamin}}</h2>
-      </md-toolbar>
-      <div class="chart_container" layout-padding>
-        <canvas
-          ng-attr-id="pie_chart_for_{{vitamin}}"
-          class="chart chart-pie"
-          chart-data="pie_chart_data[vitamin]"
-          chart-labels="pie_chart_labels[vitamin]"
-          chart-legend="true">
-        </canvas>
-      </div>
+      <div style="margin-left: 15px;">{{vitamin}}</div>
+      <canvas
+        ng-attr-id="pie_chart_for_{{vitamin}}"
+        class="chart chart-pie"
+        chart-data="pie_chart_data[vitamin]"
+        chart-labels="pie_chart_labels[vitamin]"
+        chart-legend="true">
+      </canvas>
     </div>
     <md-button
       id="leave_email"
