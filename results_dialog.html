@@ -2,36 +2,11 @@
   <h2 class="md-toolbar-tools">Download Results</h2>
 </md-toolbar>
 <md-content layout-padding>
-  <div ng-show="!email_provided">
-    <md-input-container class="md-block">
-      <label>Your Email</label>
-      <input ng-model="email" autofocus>
-    </md-input-container>
-    <div layout="row">
-      <md-button
-        ng-click="dismiss()">
-        Dismiss
-      </md-button>
-      <md-button
-        class="md-primary"
-        ng-disabled="emailCheck()"
-        ng-click="email_provided = true">
-        Confirm
-      </md-button>
-    </div>
-  </div>
   <div
-    ng-show="email_provided"
     layout="column"
     layout-align="center center">
     <p>Thank you!</p>
     <div layout="row">
-      <md-button
-        href="mailto:mark@example.com?body={{email}}&subject=My%20Email"
-        target="_blank"
-        ng-click="dismiss()">
-        Leave your Email
-      </md-button>
       <md-button
         class="md-primary"
         ng-click="download()">

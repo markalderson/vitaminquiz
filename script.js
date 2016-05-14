@@ -285,10 +285,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
     $scope.download = function () {
       $mdDialog.hide();
     };
-
-    $scope.emailCheck = function () {
-      return !$scope.email || !$scope.email.includes('@');
-    };
   }).
   controller('AddFoodCtrl', function ($scope, $mdDialog, nutrients) {
     $scope.nutrients = nutrients;
