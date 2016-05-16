@@ -176,6 +176,12 @@
         chart-legend="true">
       </canvas>
     </div>
+    <md-button
+      class="md-raised md-primary"
+      ng-if="finished"
+      ng-click="download()">
+      Download
+    </md-button>
     <!-- JavaScript -->
     <!-- Dependencies -->
     <script src="node_modules/angular/angular.js"></script>
@@ -189,8 +195,8 @@
     </script>
     <script src="bower_components/angular-chart.js/dist/angular-chart.js">
     </script>
-    <script src="bower_components/jspdf/dist/jspdf.debug.js">
-    </script>
+    <script src="blob-stream.js"></script>
+    <script src="pdfkit.js"></script>
     <!-- My code -->
     <script src="script.js"></script>
   </body>

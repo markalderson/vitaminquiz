@@ -1,8 +1,9 @@
 angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
   config(['$compileProvider', function ($compileProvider) {
-    $compileProvider.aHrefSanitizationWhitelist(/data:|mailto:/);
+    $compileProvider.aHrefSanitizationWhitelist(/blob:/);
   }]).
-  controller('QuizCtrl', function ($scope, $q, $location, $http, $mdDialog) {
+  controller('QuizCtrl', function ($scope, $q, $location, $http, $mdDialog,
+    numberFilter) {
     var quiz_file = $location.search()['quiz'];
     $http.get(quiz_file).then(function (result) {
       $scope.quiz = result.data;
@@ -150,6 +151,44 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
 
       $scope.prepareCharts();
       $scope.finished = true;
+    };
+
+    $scope.download = function () {
+      var doc = new PDFDocument();
+      var stream = doc.pipe(blobStream());
+      doc.text($scope.quiz.export_notes);
+      doc.addPage();
+      var not_enough = $scope.vitaminsNotEnough();
+      if (not_enough.length > 0) {
+        doc.fillColor('black');
+        doc.fontSize(18);
+        doc.text($scope.quiz.text_not_enough);
+        doc.fillColor('grey');
+        doc.fontSize(10);
+        not_enough.forEach(function (vitamin) {
+          doc.text('- ' + vitamin + ' (' +
+            numberFilter($scope.percentage(vitamin), 2) +
+            '%)');
+        });
+      }
+      var enough = $scope.vitaminsEnough();
+      if (enough.length > 0) {
+        doc.addPage();
+        doc.fillColor('black');
+        doc.fontSize(18);
+        doc.text($scope.quiz.text_enough);
+        doc.fillColor('grey');
+        doc.fontSize(10);
+        enough.forEach(function (vitamin) {
+          doc.text('- ' + vitamin + ' (' +
+            numberFilter($scope.percentage(vitamin), 2) +
+            '%)');
+        });
+      }
+      doc.end();
+      stream.on('finish', function () {
+        window.open(stream.toBlobURL('application/pdf'), '_blank');
+      });
     };
 
     $scope.$watch('quiz.selected_categories', function (categories) {
