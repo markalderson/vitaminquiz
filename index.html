@@ -68,14 +68,14 @@
         </md-icon>
       </md-button>
     </md-toolbar>
-    <md-content>
-      <div id="sticky-header" ng-hide="finished">
-        <div>Foods</div>
-        <div ng-repeat="answer in quiz.answers">{{answer}}</div>
-      </div>
-    </md-content>
     <md-table-container ng-hide="finished">
       <table md-table>
+        <thead md-head>
+          <tr md-row>
+            <th md-column>Foods</th>
+            <th md-column ng-repeat="answer in quiz.answers">{{answer}}</th>
+          </tr>
+        </thead>
         <tbody md-body>
           <tr md-row md-auto-select ng-repeat="food in quiz.foods">
             <td md-cell>{{food}}</td>
@@ -125,6 +125,33 @@
         <md-divider ng-if="!$last"></md-divider>
       </md-list-item>
     </md-list>
+    <md-toolbar ng-if="finished">
+      <h2 class="md-toolbar-tools">Charts</h2>
+    </md-toolbar>
+    <div ng-if="finished">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools">Legend</h2>
+      </md-toolbar>
+      <md-table-container>
+        <table md-table>
+          <thead md-head>
+            <tr md-row>
+              <th md-column>Food</th>
+              <th md-column>Label</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row md-auto-select ng-repeat="food in quiz.foods">
+              <td md-cell>{{food}}</td>
+              <td md-cell>F{{$index + 1}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+    </div>
+    <md-toolbar ng-if="finished">
+      <h2 class="md-toolbar-tools">Intakes for each nutrient</h2>
+    </md-toolbar>
     <div ng-if="finished" layout-padding>
       <canvas
         id="chart_1"
@@ -135,23 +162,20 @@
         chart-legend="true">
       </canvas>
     </div>
-    <div ng-if="finished" ng-repeat="vitamin in quiz.vitamins">
-      <div style="margin-left: 15px;">{{vitamin}}</div>
+    <div
+      ng-if="finished"
+      ng-repeat="vitamin in quiz.vitamins">
+      <md-toolbar>
+        <h2 class="md-toolbar-tools">Intake for {{vitamin}}</h2>
+      </md-toolbar>
       <canvas
-        ng-attr-id="pie_chart_for_{{vitamin}}"
+        ng-attr-id="pie_chart_for_{{$index}}"
         class="chart chart-pie"
         chart-data="pie_chart_data[vitamin]"
         chart-labels="pie_chart_labels[vitamin]"
         chart-legend="true">
       </canvas>
     </div>
-    <md-button
-      id="leave_email"
-      class="md-raised md-primary"
-      ng-click="openResultsDialog($event)"
-      ng-if="finished">
-      Download Results
-    </md-button>
     <!-- JavaScript -->
     <!-- Dependencies -->
     <script src="node_modules/angular/angular.js"></script>
@@ -166,8 +190,6 @@
     <script src="bower_components/angular-chart.js/dist/angular-chart.js">
     </script>
     <script src="bower_components/jspdf/dist/jspdf.debug.js">
-    </script>
-    <script src="bower_components/html2canvas/build/html2canvas.js">
     </script>
     <!-- My code -->
     <script src="script.js"></script>

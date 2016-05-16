@@ -25,20 +25,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       goal: 1
     };
 
-    $scope.$watch('quiz', function () {
-      window.setTimeout(function () {
-        var headers = document.querySelectorAll('#sticky-header > div');
-        var header, column;
-        var i;
-        for (i = 0; i < headers.length; i++) {
-          header = headers[i];
-          column = document.querySelectorAll('tr:first-child td')[i];
-          header.style.width = (column.offsetWidth - 15) + 'px';
-          header.style.padding = 5 + 'px';
-        }
-      }, 100);
-    }, true);
-
     $scope.addFood = function ($event) {
       $mdDialog.show({
         controller: 'AddFoodCtrl',
@@ -215,30 +201,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
-    $scope.exportAsPdf = function () {
-      var pdf = new jsPDF('p','pt','a4');
-      pdf.addHTML(document.body, 0, 0, {}, function() {
-        window.open(pdf.output('datauristring'), '_blank');
-        setTimeout(function () {
-          location.reload();
-        }, 0);
-      });
-    };
-
-    $scope.openResultsDialog = function ($event) {
-      $mdDialog.show({
-        controller: 'GetResultCtrl',
-        templateUrl: 'results_dialog.html',
-        parent: angular.element(document.body),
-        targetEvent: $event,
-        clickOutsideToClose:true,
-        fullscreen: true
-      }).then(function () {
-        $scope.exporting = true;
-        $scope.exportAsPdf();
-      });
-    };
-
     $scope.prepareCharts = function () {
       $scope.prepareBarChart();
       $scope.preparePieCharts();
@@ -275,15 +237,6 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       $scope.pie_chart_labels[vitamin] = $scope.quiz.foods.map(
         function (food, i) { return 'F' + (i + 1); }
       );
-    };
-  }).
-  controller('GetResultCtrl', function ($scope, $mdDialog) {
-    $scope.dismiss = function () {
-      $mdDialog.cancel();
-    };
-
-    $scope.download = function () {
-      $mdDialog.hide();
     };
   }).
   controller('AddFoodCtrl', function ($scope, $mdDialog, nutrients) {

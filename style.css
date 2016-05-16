@@ -2,25 +2,6 @@
   display: none;
 }
 
-#sticky-header {
-  min-height: 50px;
-  color: rgb(127, 127, 127);
-  font-weight: bold;
-}
-
-#sticky-header > div {
-  display: inline-block;
-}
-
-body > div {
-  height: 100%;
-}
-
-md-list-item.active {
-  background: rgb(240, 240, 240);
-  border-radius: 5px;
-}
-
 md-icon svg {
   fill: white;
 }
