@@ -191,6 +191,10 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
       });
     };
 
+    $scope.print = function () {
+      window.print();
+    };
+
     $scope.$watch('quiz.selected_categories', function (categories) {
       if (categories) {
         var foods = categories.map(function (category) {
