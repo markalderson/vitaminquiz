@@ -302,7 +302,7 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
     $scope.allDone = function () {
       var name_ok = $scope.name ? true : false;
       var all_intakes_ok = $scope.nutrients.filter(function (nutrient) {
-        return $scope.intakes[nutrient] ? true : false;
+        return $scope.intakes[nutrient] >= 0 ? true : false;
       }).length === $scope.nutrients.length;
       return name_ok && all_intakes_ok;
     };
