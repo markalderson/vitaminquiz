@@ -154,6 +154,7 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
     };
 
     $scope.download = function () {
+      $scope.downloading = true;
       var doc = new PDFDocument();
       var stream = doc.pipe(blobStream());
       doc.text($scope.quiz.export_notes);
@@ -185,8 +186,17 @@ angular.module('VitaminQuizApp', ['ngMaterial', 'md.data.table', 'chart.js']).
             '%)');
         });
       }
+      doc.addPage();
+      var bar_chart = document.querySelector('#chart_1');
+      doc.image(bar_chart.toDataURL(), { width: 500 });
+      doc.moveDown();
+      doc.fillColor('grey');
+      doc.text('(Left: You / Right: Ideal)', { align: 'center' });
       doc.end();
       stream.on('finish', function () {
+        $scope.$apply(function () {
+          $scope.downloading = false;
+        });
         window.open(stream.toBlobURL('application/pdf'), '_blank');
       });
     };

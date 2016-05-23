@@ -185,7 +185,9 @@
     <md-button
       class="md-raised md-primary"
       ng-if="finished"
-      ng-click="download()">
+      ng-click="download()"
+      ng-disabled="downloading"
+      ng-class="downloading ? 'downloading' : ''">
       Download Summary
     </md-button>
     <!-- JavaScript -->
